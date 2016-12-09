@@ -56,7 +56,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'JulesWang/css.vim' " only necessary if your Vim version < 7.4
 Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'groenewege/vim-less'
 Plugin 'mxw/vim-jsx'
@@ -494,18 +493,6 @@ nnoremap <silent> <F3> :Grep<CR>
 """"""""""""""""""""""""""""""
 let g:netrw_winsize = 30
 nmap <silent> <leader>fe :Sexplore<cr> 
-
-""""""""""""""""""""""""""""""
-" winManager
-""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout='BufExplorer|TagList'
-let g:winManagerWidth = 40
-let g:defaultExplorer = 0
-"using ':wincmd t' instead of 'FirstExplorerWindow'
-"nmap <leader>f :FirstExplorerWindow<cr>
-nmap <leader>f :wincmd t<cr>
-nmap <leader>b :BottomExplorerWindow<cr>
-nmap <silent>wm :WMToggle<cr>
 
 """"""""""""""""""""""""""""""
 " BufExplorer
