@@ -23,6 +23,7 @@
 "       http://amix.dk/vim/vimrc.txt
 "
 " Sections:
+"    -> Vundle
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
@@ -38,6 +39,46 @@
 "    -> Helper functions
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'mxw/vim-jsx'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'fatih/vim-go'
+Bundle 'majutsushi/tagbar'
+Bundle 'fholgado/minibufexpl.vim'
+let g:jsx_ext_required = 0
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -168,8 +209,6 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
 
 " Be smart when using tabs ;)
 set smarttab
@@ -178,8 +217,16 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 
-" Ruby
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType coffee setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType less setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType css setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType scss setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType js setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType javascript.jsx setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType jade setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " Linebreak on 500 characters
 set lbr
@@ -197,7 +244,6 @@ set wrap "Wrap lines
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -448,18 +494,6 @@ let g:netrw_winsize = 30
 nmap <silent> <leader>fe :Sexplore<cr> 
 
 """"""""""""""""""""""""""""""
-" winManager
-""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout='BufExplorer|TagList'
-let g:winManagerWidth = 40
-let g:defaultExplorer = 0
-"using ':wincmd t' instead of 'FirstExplorerWindow'
-"nmap <leader>f :FirstExplorerWindow<cr>
-nmap <leader>f :wincmd t<cr>
-nmap <leader>b :BottomExplorerWindow<cr>
-nmap <silent>wm :WMToggle<cr>
-
-""""""""""""""""""""""""""""""
 " BufExplorer
 """"""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0       " Do not show default help.
@@ -515,3 +549,22 @@ nmap ,n :NERDTreeFind<CR>
 nmap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
 let NERDTreeHijackNetrw=0
+nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
+call pathogen#infect()
+
+""""""""""""""""""
+"minibufexpl
+""""""""""""""""""
+
+nmap <silent>wm :MBEToggle<cr>
+nmap <leader>f :wincmd t<cr>
+
+let g:miniBufExplVSplit = 20   " column width in chars
+
+""""""""""""""""""
+"tagbar
+""""""""""""""""""
+
+let g:tagbar_ctags_bin='ctags'          "ctags程序的路径
+let g:tagbar_width=30                   "窗口宽度的设置
+map <F3> :Tagbar<CR>
