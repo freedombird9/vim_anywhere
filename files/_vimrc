@@ -61,6 +61,8 @@ Plugin 'groenewege/vim-less'
 Plugin 'mxw/vim-jsx'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'fatih/vim-go'
+Bundle 'majutsushi/tagbar'
+Bundle 'fholgado/minibufexpl.vim'
 let g:jsx_ext_required = 0
 
 " All of your Plugins must be added before the following line
@@ -207,8 +209,6 @@ set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-set expandtab
 
 " Be smart when using tabs ;)
 set smarttab
@@ -244,7 +244,6 @@ set wrap "Wrap lines
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f')<CR>
 vnoremap <silent> # :call VisualSelection('b')<CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -552,3 +551,20 @@ let g:NERDTreeWinPos = "right"
 let NERDTreeHijackNetrw=0
 nnoremap <Leader>m :w <BAR> !lessc % > %:t:r.css<CR><space>
 call pathogen#infect()
+
+""""""""""""""""""
+"minibufexpl
+""""""""""""""""""
+
+nmap <silent>wm :MBEToggle<cr>
+nmap <leader>f :wincmd t<cr>
+
+let g:miniBufExplVSplit = 20   " column width in chars
+
+""""""""""""""""""
+"tagbar
+""""""""""""""""""
+
+let g:tagbar_ctags_bin='ctags'          "ctags程序的路径
+let g:tagbar_width=30                   "窗口宽度的设置
+map <F3> :Tagbar<CR>
